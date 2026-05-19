@@ -10,10 +10,15 @@
 
         <div class="mt-16 grid gap-6 md:grid-cols-3">
             @forelse ($teamMembers as $member)
-                <article class="rounded-[2rem] border border-white/10 bg-white/5 p-6">
+                <article class="overflow-hidden rounded-[2rem] border border-white/10 bg-white/5">
+                    @if ($member->image)
+                        <img src="{{ $member->image->url }}" alt="{{ $member->name }}" class="h-64 w-full object-cover">
+                    @endif
+                    <div class="p-6">
                     <p class="text-sm text-sky-200">{{ $member->role }}</p>
                     <h2 class="mt-3 text-2xl font-semibold text-white">{{ $member->name }}</h2>
                     <p class="mt-3 text-sm leading-7 text-slate-300">{{ $member->bio }}</p>
+                    </div>
                 </article>
             @empty
                 <article class="rounded-[2rem] border border-dashed border-white/15 bg-white/5 p-6 text-slate-300 md:col-span-3">

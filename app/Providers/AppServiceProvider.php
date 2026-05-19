@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Media;
 use App\Services\Settings\SettingsManager;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
@@ -38,6 +39,9 @@ class AppServiceProvider extends ServiceProvider
             $view->with('brandSettings', $settings->group('general'));
             $view->with('socialSettings', $settings->group('social'));
             $view->with('seoDefaults', $settings->group('seo'));
+            $view->with('siteLogo', $settings->get('general.logo_media_id') ? Media::query()->find($settings->get('general.logo_media_id')) : null);
+            $view->with('siteFavicon', $settings->get('general.favicon_media_id') ? Media::query()->find($settings->get('general.favicon_media_id')) : null);
+            $view->with('defaultOgImage', $settings->get('seo.default_og_image_media_id') ? Media::query()->find($settings->get('seo.default_og_image_media_id')) : null);
         });
     }
 }

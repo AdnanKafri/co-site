@@ -10,6 +10,9 @@
     <div class="flex min-h-screen items-center justify-center px-6">
         <form action="{{ route('admin.login.store') }}" method="POST" class="w-full max-w-md rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur">
             @csrf
+            @if ($siteLogo ?? false)
+                <img src="{{ $siteLogo->url }}" alt="{{ $brandSettings['company_name'] ?? 'PressnGo' }}" class="mb-6 h-14 w-auto">
+            @endif
             <p class="text-sm uppercase tracking-[0.3em] text-sky-200">Admin</p>
             <h1 class="mt-4 font-[family-name:var(--font-display)] text-3xl font-semibold">Sign in to manage the site</h1>
 

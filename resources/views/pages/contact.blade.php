@@ -44,5 +44,26 @@
                 </button>
             </form>
         </div>
+
+        @if ($teamMembers->isNotEmpty())
+            <div class="mt-16">
+                <p class="text-sm uppercase tracking-[0.3em] text-sky-200">Team</p>
+                <h2 class="mt-4 font-[family-name:var(--font-display)] text-4xl font-semibold text-white">Talk to the people behind the work.</h2>
+                <div class="mt-10 grid gap-6 md:grid-cols-3">
+                    @foreach ($teamMembers as $member)
+                        <article class="overflow-hidden rounded-[2rem] border border-white/10 bg-white/5">
+                            @if ($member->image)
+                                <img src="{{ $member->image->url }}" alt="{{ $member->name }}" class="h-64 w-full object-cover">
+                            @endif
+                            <div class="p-6">
+                                <p class="text-sm text-sky-200">{{ $member->role }}</p>
+                                <h3 class="mt-3 text-2xl font-semibold text-white">{{ $member->name }}</h3>
+                                <p class="mt-3 text-sm leading-7 text-slate-300">{{ $member->bio }}</p>
+                            </div>
+                        </article>
+                    @endforeach
+                </div>
+            </div>
+        @endif
     </section>
 </x-layouts.app>

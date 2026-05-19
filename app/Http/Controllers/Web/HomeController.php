@@ -24,9 +24,9 @@ class HomeController extends Controller
         return view('pages.home', [
             'seo' => new SeoData('PressnGo'),
             'sections' => $sections,
-            'featuredServices' => Service::query()->where('featured', true)->orderBy('sort_order')->take(3)->get(),
-            'featuredProjects' => Project::query()->where('featured', true)->latest()->take(3)->get(),
-            'partners' => Partner::query()->where('is_active', true)->orderBy('sort_order')->take(8)->get(),
+            'featuredServices' => Service::query()->with('image')->where('featured', true)->orderBy('sort_order')->take(3)->get(),
+            'featuredProjects' => Project::query()->with('cover')->where('featured', true)->latest()->take(3)->get(),
+            'partners' => Partner::query()->with('logo')->where('is_active', true)->orderBy('sort_order')->take(12)->get(),
         ]);
     }
 }

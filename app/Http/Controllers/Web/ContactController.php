@@ -22,6 +22,7 @@ class ContactController extends Controller
                 ->orderBy('sort_order')
                 ->get()
                 ->keyBy('section'),
+            'teamMembers' => \App\Models\TeamMember::query()->with('image')->where('is_active', true)->orderBy('sort_order')->take(3)->get(),
         ]);
     }
 

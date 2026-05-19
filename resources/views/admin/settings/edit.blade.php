@@ -44,6 +44,15 @@
                     Default SEO description
                     <textarea name="default_description" rows="4" class="mt-2 w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none">{{ old('default_description', $seo['default_description'] ?? '') }}</textarea>
                 </label>
+                <div class="md:col-span-2">
+                    <x-admin.media-picker name="logo_media_id" label="Website logo" :value="old('logo_media_id', $general['logo_media_id'] ?? null)" />
+                </div>
+                <div class="md:col-span-2">
+                    <x-admin.media-picker name="favicon_media_id" label="Favicon" :value="old('favicon_media_id', $general['favicon_media_id'] ?? null)" />
+                </div>
+                <div class="md:col-span-2">
+                    <x-admin.media-picker name="default_og_image_media_id" label="Default social sharing image" :value="old('default_og_image_media_id', $seo['default_og_image_media_id'] ?? null)" />
+                </div>
                 <label class="text-sm text-slate-600 md:col-span-2">
                     Maps embed / link
                     <textarea name="maps_embed" rows="4" class="mt-2 w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none">{{ old('maps_embed', $general['maps_embed'] ?? '') }}</textarea>

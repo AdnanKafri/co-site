@@ -13,7 +13,7 @@ class ServiceController extends Controller
     {
         return view('pages.services.index', [
             'seo' => new SeoData('Services'),
-            'services' => Service::query()->orderBy('sort_order')->get(),
+            'services' => Service::query()->with('image')->orderBy('sort_order')->get(),
         ]);
     }
 
@@ -21,7 +21,7 @@ class ServiceController extends Controller
     {
         return view('pages.services.show', [
             'seo' => new SeoData($service->title),
-            'service' => $service,
+            'service' => $service->load('image'),
         ]);
     }
 }

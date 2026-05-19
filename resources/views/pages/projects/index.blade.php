@@ -7,11 +7,16 @@
 
         <div class="mt-16 grid gap-6 md:grid-cols-2">
             @forelse ($projects as $project)
-                <a href="{{ route('projects.show', $project) }}" class="rounded-[2rem] border border-white/10 bg-white/5 p-6 transition hover:-translate-y-1 hover:border-white/20">
-                    <p class="text-sm text-sky-200">{{ $project->category ?: 'Project' }}</p>
-                    <h2 class="mt-3 text-2xl font-semibold text-white">{{ $project->title }}</h2>
-                    <p class="mt-3 text-sm text-slate-400">{{ $project->client }}</p>
-                    <p class="mt-4 text-sm leading-7 text-slate-300">{{ \Illuminate\Support\Str::limit(strip_tags($project->description), 180) }}</p>
+                <a href="{{ route('projects.show', $project) }}" class="overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 transition hover:-translate-y-1 hover:border-white/20">
+                    @if ($project->cover)
+                        <img src="{{ $project->cover->url }}" alt="{{ $project->title }}" class="h-72 w-full object-cover">
+                    @endif
+                    <div class="p-6">
+                        <p class="text-sm text-sky-200">{{ $project->category ?: 'Project' }}</p>
+                        <h2 class="mt-3 text-2xl font-semibold text-white">{{ $project->title }}</h2>
+                        <p class="mt-3 text-sm text-slate-400">{{ $project->client }}</p>
+                        <p class="mt-4 text-sm leading-7 text-slate-300">{{ \Illuminate\Support\Str::limit(strip_tags($project->description), 180) }}</p>
+                    </div>
                 </a>
             @empty
                 <div class="rounded-[2rem] border border-dashed border-white/15 bg-white/5 p-6 text-slate-300 md:col-span-2">

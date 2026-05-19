@@ -13,7 +13,7 @@ class ProjectController extends Controller
     {
         return view('pages.projects.index', [
             'seo' => new SeoData('Projects'),
-            'projects' => Project::query()->latest()->get(),
+            'projects' => Project::query()->with('cover')->latest()->get(),
         ]);
     }
 

@@ -33,6 +33,8 @@ class SettingsController extends Controller
             'brand_primary',
             'brand_secondary',
             'maps_embed',
+            'logo_media_id',
+            'favicon_media_id',
         ] as $key) {
             $this->settings->set('general.'.$key, $request->validated($key));
         }
@@ -40,6 +42,7 @@ class SettingsController extends Controller
         foreach ([
             'default_title',
             'default_description',
+            'default_og_image_media_id',
         ] as $key) {
             $this->settings->set('seo.'.$key, $request->validated($key));
         }

@@ -1,7 +1,12 @@
 <header class="border-b border-white/10">
     <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
-        <a href="{{ route('home') }}" class="font-[family-name:var(--font-display)] text-xl font-semibold tracking-[0.2em] text-white uppercase">
-            {{ $brandSettings['company_name'] ?? 'PressnGo' }}
+        <a href="{{ route('home') }}" class="flex items-center gap-3">
+            @if ($siteLogo)
+                <img src="{{ $siteLogo->url }}" alt="{{ $brandSettings['company_name'] ?? 'PressnGo' }}" class="h-11 w-auto">
+            @endif
+            <span class="font-[family-name:var(--font-display)] text-xl font-semibold tracking-[0.2em] text-white uppercase">
+                {{ $brandSettings['company_name'] ?? 'PressnGo' }}
+            </span>
         </a>
 
         <nav class="hidden items-center gap-8 text-sm text-slate-300 md:flex">
