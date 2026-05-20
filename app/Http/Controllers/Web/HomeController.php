@@ -7,6 +7,7 @@ use App\Models\PageSection;
 use App\Models\Partner;
 use App\Models\Project;
 use App\Models\Service;
+use App\Models\TeamMember;
 use App\Support\Seo\SeoData;
 use Illuminate\View\View;
 
@@ -27,6 +28,9 @@ class HomeController extends Controller
             'featuredServices' => Service::query()->with('image')->where('featured', true)->orderBy('sort_order')->take(3)->get(),
             'featuredProjects' => Project::query()->with('cover')->where('featured', true)->latest()->take(3)->get(),
             'partners' => Partner::query()->with('logo')->where('is_active', true)->orderBy('sort_order')->take(12)->get(),
+            'teamMembers' => TeamMember::query()->with('image')->where('is_active', true)->orderBy('sort_order')->take(3)->get(),
+            'serviceCount' => Service::query()->count(),
+            'projectCount' => Project::query()->count(),
         ]);
     }
 }

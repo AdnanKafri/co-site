@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class Media extends Model
 {
@@ -28,6 +29,7 @@ class Media extends Model
     protected $appends = [
         'url',
         'path',
+        'is_image',
     ];
 
     public function uploader(): BelongsTo
@@ -42,6 +44,27 @@ class Media extends Model
 
     public function getUrlAttribute(): string
     {
-        return Storage::disk($this->disk)->url($this->path);
+        return route('media.show', [
+            'media' => $this->getKey(),
+            'filename' => $this->presentableFilename(),
+        ], false);
+    }
+
+    public function getIsImageAttribute(): bool
+    {
+        return str_starts_with((string) $this->mime_type, 'image/');
+    }
+
+    public function exists(): bool
+    {
+        return $this->path !== '' && Storage::disk($this->disk)->exists($this->path);
+    }
+
+    public function presentableFilename(): string
+    {
+        $name = pathinfo($this->original_name ?: $this->filename, PATHINFO_FILENAME);
+        $extension = $this->extension ?: pathinfo($this->filename, PATHINFO_EXTENSION);
+
+        return trim(Str::slug($name).($extension ? '.'.$extension : ''), '.');
     }
 }

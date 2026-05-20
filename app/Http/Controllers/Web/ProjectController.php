@@ -11,9 +11,12 @@ class ProjectController extends Controller
 {
     public function index(): View
     {
+        $projects = Project::query()->with('cover')->latest()->get();
+
         return view('pages.projects.index', [
             'seo' => new SeoData('Projects'),
-            'projects' => Project::query()->with('cover')->latest()->get(),
+            'projects' => $projects,
+            'featuredProjects' => $projects->where('featured', true)->take(2)->values(),
         ]);
     }
 
@@ -22,6 +25,12 @@ class ProjectController extends Controller
         return view('pages.projects.show', [
             'seo' => new SeoData($project->title),
             'project' => $project->load('gallery'),
+            'relatedProjects' => Project::query()
+                ->with('cover')
+                ->whereKeyNot($project->id)
+                ->latest()
+                ->take(2)
+                ->get(),
         ]);
     }
 }
