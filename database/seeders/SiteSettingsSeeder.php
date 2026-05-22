@@ -77,32 +77,32 @@ class SiteSettingsSeeder extends Seeder
     {
         $defaults = [
             'hero' => [
-                'badge' => 'Curated Digital Presence',
-                'title' => 'A premium company platform built for credibility, speed, and clear storytelling.',
-                'body' => 'PressnGo combines intentional design with a lightweight admin workflow, giving the business a polished site without generic CMS sprawl.',
-                'primary_label' => 'Explore Services',
+                'badge' => 'Software & Digital Transformation',
+                'title' => 'We build premium digital platforms that help modern companies communicate, operate, and grow with clarity.',
+                'body' => 'PressnGo designs Laravel-powered web platforms, internal systems, and brand-aware digital experiences for teams that need more than a brochure site.',
+                'primary_label' => 'Explore Capabilities',
                 'primary_url' => '/services',
-                'secondary_label' => 'Start a Project',
+                'secondary_label' => 'Talk to Us',
                 'secondary_url' => '/contact',
             ],
             'features' => [
-                'eyebrow' => 'Why PressnGo',
-                'title' => 'A business-ready platform that stays clean under real-world use.',
+                'eyebrow' => 'What makes it work',
+                'title' => 'A company site should feel like a strategic product, not an assembled template.',
                 'items' => [
-                    ['title' => 'Curated structure', 'body' => 'Developers keep the layout intentional while the business updates meaningful content.'],
-                    ['title' => 'Centralized media', 'body' => 'Assets are uploaded once and reused across services, projects, team, and settings.'],
-                    ['title' => 'Production simplicity', 'body' => 'Laravel, Blade, Tailwind, and Alpine keep the stack fast, stable, and maintainable.'],
+                    ['title' => 'Software-minded architecture', 'body' => 'We structure the site around real business workflows, not a generic CMS surface.'],
+                    ['title' => 'Brand-aware presentation', 'body' => 'Every page balances clear information, premium composition, and a strong visual identity.'],
+                    ['title' => 'Reusable content operations', 'body' => 'Media, sections, and content stay centralized so the team can move quickly without compromising quality.'],
                 ],
             ],
             'cta' => [
-                'title' => 'Ready to shape a stronger digital presence?',
-                'body' => 'Use the admin workflow to manage content confidently while the frontend stays cohesive and premium.',
-                'button_label' => 'Contact Us',
+                'title' => 'If the business is evolving, the platform should keep up.',
+                'body' => 'We help companies translate strategy into a polished digital experience that supports sales, operations, and long-term growth.',
+                'button_label' => 'Book a Discovery Call',
                 'button_url' => '/contact',
             ],
             'partners_rail' => [
-                'title' => 'Trusted by growing brands and ambitious teams.',
-                'body' => 'Partner logos are managed from one central library and rendered in a curated homepage rail.',
+                'title' => 'Trusted by teams modernizing how they present, operate, and scale.',
+                'body' => 'Client and partner marks are managed through the same centralized media workflow as the rest of the platform.',
             ],
         ];
 

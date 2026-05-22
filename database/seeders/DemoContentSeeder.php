@@ -33,15 +33,15 @@ class DemoContentSeeder extends Seeder
 
     protected function seedMediaAssets(): void
     {
-        $this->media['hero'] = $this->storeSvg('demo', 'hero-signal-ecosystem.svg', 'Hero Signal Ecosystem', 'Layered interface inspired hero artwork', $this->artworkSvg('Signal Ecosystem', 'Architected visibility for companies that need presence, clarity, and momentum.', '#071221', '#2454cb', '#39c9ff'));
-        $this->media['cta'] = $this->storeSvg('demo', 'cta-system-rhythm.svg', 'CTA System Rhythm', 'Atmospheric abstract CTA artwork', $this->artworkSvg('System Rhythm', 'Designed code, editorial pacing, and premium structure aligned into one experience.', '#0a1326', '#183f82', '#13b9a9'));
+        $this->media['hero'] = $this->storeSvg('demo', 'hero-signal-ecosystem.svg', 'Hero Signal Ecosystem', 'Hero artwork for the company platform', $this->artworkSvg('Digital Transformation Platform', 'Premium software, internal systems, and branded digital experiences.', '#071221', '#2454cb', '#39c9ff'));
+        $this->media['cta'] = $this->storeSvg('demo', 'cta-system-rhythm.svg', 'CTA System Rhythm', 'Atmospheric abstract CTA artwork', $this->artworkSvg('Operational Momentum', 'Designed code, editorial pacing, and premium structure aligned into one experience.', '#0a1326', '#183f82', '#13b9a9'));
         $this->media['favicon'] = $this->storeSvg('settings', 'pressngo-favicon.svg', 'PressnGo Favicon', 'PressnGo favicon mark', $this->faviconSvg());
 
         foreach ([
-            ['slug' => 'brand-architecture', 'title' => 'Brand Architecture', 'base' => '#0b1222', 'accent' => '#2b66db', 'highlight' => '#85e3ff'],
-            ['slug' => 'platform-design', 'title' => 'Platform Design', 'base' => '#0f2749', 'accent' => '#21a0d8', 'highlight' => '#51d3ff'],
-            ['slug' => 'growth-sites', 'title' => 'Growth Sites', 'base' => '#112b52', 'accent' => '#166ac3', 'highlight' => '#7de8f3'],
-            ['slug' => 'content-operations', 'title' => 'Content Operations', 'base' => '#173664', 'accent' => '#1c3f9f', 'highlight' => '#d07eff'],
+            ['slug' => 'digital-transformation', 'title' => 'Digital Transformation', 'base' => '#0b1222', 'accent' => '#2b66db', 'highlight' => '#85e3ff'],
+            ['slug' => 'custom-web-platforms', 'title' => 'Custom Web Platforms', 'base' => '#0f2749', 'accent' => '#21a0d8', 'highlight' => '#51d3ff'],
+            ['slug' => 'automation-systems', 'title' => 'Automation Systems', 'base' => '#112b52', 'accent' => '#166ac3', 'highlight' => '#7de8f3'],
+            ['slug' => 'ux-engineering', 'title' => 'UX Engineering', 'base' => '#173664', 'accent' => '#1c3f9f', 'highlight' => '#d07eff'],
         ] as $item) {
             $this->media['service_'.$item['slug']] = $this->storeSvg('services', $item['slug'].'.svg', $item['title'], $item['title'].' artwork', $this->artworkSvg($item['title'], 'A premium service visual for '.$item['title'].'.', $item['base'], $item['accent'], $item['highlight']));
         }
@@ -59,14 +59,14 @@ class DemoContentSeeder extends Seeder
         }
 
         foreach ([
-            ['slug' => 'layla-haddad', 'name' => 'Layla Haddad', 'role' => 'Creative Director', 'base' => '#0d1833', 'accent' => '#2f66d0', 'highlight' => '#8de9ff'],
-            ['slug' => 'omar-khaled', 'name' => 'Omar Khaled', 'role' => 'Technical Lead', 'base' => '#10182d', 'accent' => '#197dbf', 'highlight' => '#5bd7c7'],
-            ['slug' => 'nora-farouk', 'name' => 'Nora Farouk', 'role' => 'Content Systems Strategist', 'base' => '#111b30', 'accent' => '#6e5fe9', 'highlight' => '#f58cff'],
+            ['slug' => 'layla-haddad', 'name' => 'Layla Haddad', 'role' => 'Design Director', 'base' => '#0d1833', 'accent' => '#2f66d0', 'highlight' => '#8de9ff'],
+            ['slug' => 'omar-khaled', 'name' => 'Omar Khaled', 'role' => 'Engineering Lead', 'base' => '#10182d', 'accent' => '#197dbf', 'highlight' => '#5bd7c7'],
+            ['slug' => 'nora-farouk', 'name' => 'Nora Farouk', 'role' => 'Product Strategy Lead', 'base' => '#111b30', 'accent' => '#6e5fe9', 'highlight' => '#f58cff'],
         ] as $item) {
             $this->media['team_'.$item['slug']] = $this->storeSvg('team', $item['slug'].'.svg', $item['name'], $item['name'].' portrait', $this->portraitSvg($item['name'], $item['role'], $item['base'], $item['accent'], $item['highlight']));
         }
 
-        foreach (['Northstar Mobility', 'Aureline Cloud', 'Fathom Health', 'Sable Energy', 'Meridian Labs', 'Vector Systems'] as $index => $partner) {
+        foreach (['Northstar Mobility', 'Aureline Cloud', 'Fathom Health Systems', 'Sable Energy Group', 'Meridian Labs', 'Vector Systems'] as $index => $partner) {
             $slug = Str::slug($partner);
             $colors = ['#b6f5ff', '#f7f9ff', '#9be7ff', '#f0ebff', '#dcfdff', '#c9e8ff'];
             $this->media['partner_'.$slug] = $this->storeSvg('partners', $slug.'.svg', $partner, $partner.' logo', $this->wordmarkSvg($partner, $colors[$index % count($colors)]));
@@ -84,8 +84,8 @@ class DemoContentSeeder extends Seeder
             'general.brand_secondary' => '#19b7a7',
             'general.maps_embed' => 'Riyadh Front Business District, Riyadh, Saudi Arabia',
             'general.favicon_media_id' => $this->media['favicon']->id,
-            'seo.default_title' => 'PressnGo | Premium Company Platforms',
-            'seo.default_description' => 'PressnGo designs cinematic company platforms with strong brand structure, premium composition, and maintainable content systems.',
+            'seo.default_title' => 'PressnGo | Premium Software & Digital Platforms',
+            'seo.default_description' => 'PressnGo designs premium software platforms, digital transformation websites, and UX-focused systems for modern companies.',
             'seo.default_og_image_media_id' => $this->media['hero']->id,
             'social.linkedin' => 'https://www.linkedin.com/company/pressngo-studio',
             'social.instagram' => 'https://www.instagram.com/pressngo.studio',
@@ -102,34 +102,34 @@ class DemoContentSeeder extends Seeder
     {
         foreach ([
             'hero' => [
-                'badge' => 'Brand-Led Digital Presence',
-                'title' => 'We design premium company platforms that feel directed, immersive, and unmistakably intentional.',
-                'body' => 'PressnGo helps ambitious companies move beyond flat brochure websites with Laravel-powered brand platforms shaped by visual rhythm, strong narrative structure, and content systems teams can actually manage.',
-                'primary_label' => 'See Our Services',
+                'badge' => 'Software & Digital Transformation',
+                'title' => 'We build premium digital platforms that help modern companies communicate, operate, and grow with clarity.',
+                'body' => 'PressnGo designs Laravel-powered web platforms, internal systems, and brand-aware digital experiences for teams that need more than a brochure site. The result is a cohesive company presence with stronger storytelling, cleaner operations, and a premium visual language.',
+                'primary_label' => 'Explore Capabilities',
                 'primary_url' => '/services',
-                'secondary_label' => 'Start a Conversation',
+                'secondary_label' => 'Talk to Us',
                 'secondary_url' => '/contact',
                 'media_id' => $this->media['hero']->id,
             ],
             'features' => [
-                'eyebrow' => 'What makes it stronger',
-                'title' => 'A company site should feel like an authored experience, not an assembled template.',
+                'eyebrow' => 'What makes it work',
+                'title' => 'A company site should feel like a strategic product, not an assembled template.',
                 'items' => [
-                    ['title' => 'Narrative structure', 'body' => 'Layouts are curated in code so the story unfolds with intention rather than drifting into page-builder chaos.'],
-                    ['title' => 'Centralized media', 'body' => 'Images, brand assets, and supporting visuals are uploaded once and reused across the whole platform cleanly.'],
-                    ['title' => 'Operational clarity', 'body' => 'Business teams edit content through a focused dashboard without touching the visual composition layer.'],
+                    ['title' => 'Software-minded architecture', 'body' => 'We structure the site around real business workflows, not a generic CMS surface.'],
+                    ['title' => 'Brand-aware presentation', 'body' => 'Every page balances clear information, premium composition, and a strong visual identity.'],
+                    ['title' => 'Reusable content operations', 'body' => 'Media, sections, and content stay centralized so the team can move quickly without compromising quality.'],
                 ],
             ],
             'cta' => [
-                'title' => 'If the business has momentum, the website should carry it.',
-                'body' => 'We create premium digital company presences that sharpen trust, present capability clearly, and give internal teams a system they can maintain confidently.',
+                'title' => 'If the business is evolving, the platform should keep up.',
+                'body' => 'We help companies translate strategy into a polished digital experience that supports sales, operations, and long-term growth.',
                 'button_label' => 'Book a Discovery Call',
                 'button_url' => '/contact',
                 'media_id' => $this->media['cta']->id,
             ],
             'partners_rail' => [
-                'title' => 'Trusted by operators, builders, and teams scaling with intent.',
-                'body' => 'Every partner mark is managed through the same centralized media system used by the site, keeping the whole presentation cohesive and reusable.',
+                'title' => 'Trusted by teams modernizing how they present, operate, and scale.',
+                'body' => 'Client and partner marks are managed through the same centralized media workflow as the rest of the platform, keeping the presentation cohesive and reusable.',
             ],
         ] as $section => $data) {
             PageSection::query()->updateOrCreate(
@@ -141,17 +141,17 @@ class DemoContentSeeder extends Seeder
         }
 
         foreach ([
-            'story' => ['body' => 'PressnGo was shaped around a simple frustration: too many company websites either look polished but are impossible to maintain, or they become dynamic content systems that lose all authorship. We wanted the middle path. Curated composition. Lightweight operations. Stronger presence.'],
-            'mission' => ['body' => 'Give modern companies a premium digital presence that communicates confidence and stays manageable long after launch.'],
-            'vision' => ['body' => 'Raise the standard for company websites by treating them as long-term brand systems instead of disposable launch artifacts.'],
+            'story' => ['body' => 'PressnGo was shaped around a simple observation: many company websites are either visually polished but operationally rigid, or flexible enough to edit but too generic to feel like a real brand. We built the middle path. A curated digital platform with premium presentation, stronger storytelling, and a lightweight operating model the team can maintain with confidence.'],
+            'mission' => ['body' => 'Give modern companies a premium digital foundation that improves trust, communicates capability clearly, and supports the work happening inside the business.'],
+            'vision' => ['body' => 'Set a higher standard for company websites by treating them as long-term software and brand systems rather than disposable launch assets.'],
             'values' => ['items' => [
-                ['title' => 'Intentionality', 'body' => 'Every section, transition, and visual motif should earn its place.'],
-                ['title' => 'Clarity', 'body' => 'Narrative, hierarchy, and interface design should reinforce the same message.'],
-                ['title' => 'Maintainability', 'body' => 'A premium frontend should not require a bloated admin or fragile stack to sustain it.'],
+                ['title' => 'Intentionality', 'body' => 'Every section, transition, and visual motif should support the company story.'],
+                ['title' => 'Clarity', 'body' => 'The message, hierarchy, and interface design should reinforce one another.'],
+                ['title' => 'Maintainability', 'body' => 'A premium frontend should stay lightweight enough for real internal teams to use confidently.'],
             ]],
             'stats' => ['items' => [
-                ['label' => 'Platform launches', 'value' => '28+'],
-                ['label' => 'Editorial systems simplified', 'value' => '14'],
+                ['label' => 'Digital platforms launched', 'value' => '28+'],
+                ['label' => 'Internal systems simplified', 'value' => '14'],
                 ['label' => 'Average launch cycle', 'value' => '6 weeks'],
             ]],
         ] as $section => $data) {
@@ -164,9 +164,9 @@ class DemoContentSeeder extends Seeder
         }
 
         foreach ([
-            'intro' => ['title' => 'Bring the next version of the company presence into focus.', 'body' => 'Whether the need is a full repositioning, a premium rebuild, or a cleaner content system, we can shape the right next move together.'],
-            'details' => ['headline' => 'Direct contact', 'body' => 'Share the context, the current friction, and where the site needs to go next. We respond with practical direction and a realistic path forward.'],
-            'cta' => ['title' => 'Prefer a workshop before a build?', 'body' => 'We also run architecture, positioning, and narrative sessions for teams that need clarity before implementation.'],
+            'intro' => ['title' => 'Bring the next version of your digital presence into focus.', 'body' => 'Whether you need a full rebuild, a custom platform, or a cleaner content system, we can shape the right next move together.'],
+            'details' => ['headline' => 'Direct contact', 'body' => 'Share the context, the current friction, and where the platform needs to go next. We respond with practical direction and a realistic path forward.'],
+            'cta' => ['title' => 'Prefer a strategy session before a build?', 'body' => 'We also run architecture, positioning, and narrative sessions for teams that need clarity before implementation.'],
         ] as $section => $data) {
             PageSection::query()->updateOrCreate(
                 ['page' => 'contact', 'section' => $section],
@@ -183,42 +183,42 @@ class DemoContentSeeder extends Seeder
 
         foreach ([
             [
-                'title' => 'Brand Systems & Narrative Architecture',
-                'slug' => 'brand-systems-narrative-architecture',
-                'excerpt' => 'Define the message, hierarchy, and strategic framing that shape how the company should be experienced online.',
-                'description' => "We map the business story before pixels start moving.\n\nThis service is focused on structuring the brand narrative, message hierarchy, and content logic so the website feels decisive instead of improvised. We clarify what the audience needs to understand first, where trust should be built, and how the platform should carry momentum from section to section.",
-                'image_media_id' => $this->media['service_brand-architecture']->id,
-                'icon' => 'Narrative',
+                'title' => 'Digital Product Strategy',
+                'slug' => 'digital-product-strategy',
+                'excerpt' => 'Align positioning, scope, and content structure before design or development begins.',
+                'description' => "We define the product and platform direction before the interface takes shape.\n\nThis service is focused on discovery, audience clarity, information structure, and the practical decisions that make a launch feel coherent. It is ideal for teams that need more than design polish and want the website to support real business goals.",
+                'image_media_id' => $this->media['service_digital-transformation']->id,
+                'icon' => 'Strategy',
                 'featured' => true,
                 'sort_order' => 10,
             ],
             [
-                'title' => 'Platform Experience Design',
-                'slug' => 'platform-experience-design',
-                'excerpt' => 'Create a more cinematic, premium company experience with stronger composition, motion rhythm, and visual cohesion.',
-                'description' => "This is where visual direction becomes productively concrete.\n\nWe design the flagship experience, the supporting editorial layouts, and the coded composition system that gives the site atmosphere without turning it into a fragile frontend experiment. The result is a platform that feels elevated while staying easy to evolve.",
-                'image_media_id' => $this->media['service_platform-design']->id,
-                'icon' => 'Experience',
+                'title' => 'Custom Web Applications',
+                'slug' => 'custom-web-applications',
+                'excerpt' => 'Build branded web applications, portals, and business tools tailored to the way your team actually works.',
+                'description' => "This service covers custom Laravel application design for teams that need more than a marketing website.\n\nWe create dashboards, portals, client-facing experiences, and internal tools with clean architecture, smooth interactions, and a premium UI that still feels practical under daily use.",
+                'image_media_id' => $this->media['service_custom-web-platforms']->id,
+                'icon' => 'Apps',
                 'featured' => true,
                 'sort_order' => 20,
             ],
             [
-                'title' => 'Growth-Focused Marketing Sites',
-                'slug' => 'growth-focused-marketing-sites',
-                'excerpt' => 'Launch high-trust company websites that support sales, positioning, and expansion without SaaS-level complexity.',
-                'description' => "We build marketing sites that are credible enough for enterprise conversations and simple enough for internal teams to keep alive.\n\nThis service balances premium presentation, clean architecture, and launch readiness so the platform performs as both a brand surface and a business tool.",
-                'image_media_id' => $this->media['service_growth-sites']->id,
-                'icon' => 'Launch',
+                'title' => 'Website & Digital Experience Design',
+                'slug' => 'website-digital-experience-design',
+                'excerpt' => 'Create cinematic company websites that feel modern, premium, and clearly tied to the brand.',
+                'description' => "We design public-facing websites that feel intentional from the first scroll.\n\nThe work balances typography, rhythm, section composition, and responsive behavior so the platform becomes a trustworthy brand surface rather than a generic layout with content plugged into it.",
+                'image_media_id' => $this->media['service_ux-engineering']->id,
+                'icon' => 'Web',
                 'featured' => true,
                 'sort_order' => 30,
             ],
             [
-                'title' => 'Content Operations & CMS Simplification',
-                'slug' => 'content-operations-cms-simplification',
-                'excerpt' => 'Replace bloated editing workflows with focused content systems that match how the business actually works.',
-                'description' => "Teams often need better operations more than more flexibility.\n\nWe design lightweight admin experiences, structured editing models, and sustainable content workflows that reduce friction without exposing the visual system to accidental fragmentation.",
-                'image_media_id' => $this->media['service_content-operations']->id,
-                'icon' => 'Operations',
+                'title' => 'Automation & Internal Systems',
+                'slug' => 'automation-internal-systems',
+                'excerpt' => 'Streamline repetitive operations with lightweight systems that reduce manual work and improve clarity.',
+                'description' => "Many teams grow faster than their workflows.\n\nWe design practical automation and internal tools that reduce repetitive tasks, improve handoff clarity, and support the business behind the scenes without turning the stack into a bloated product suite.",
+                'image_media_id' => $this->media['service_automation-systems']->id,
+                'icon' => 'Ops',
                 'featured' => false,
                 'sort_order' => 40,
             ],
@@ -234,12 +234,12 @@ class DemoContentSeeder extends Seeder
 
         foreach ([
             [
-                'title' => 'Northstar Mobility',
+                'title' => 'Northstar Mobility Platform',
                 'slug' => 'northstar-mobility',
                 'client' => 'Northstar Mobility',
                 'category' => 'Mobility Platform',
-                'description' => "Northstar needed a company presence that felt as advanced as the product roadmap.\n\nWe reshaped the site around stronger hierarchy, a more cinematic flagship page, and a supporting structure that could handle investor visibility, partnership trust, and product storytelling without becoming a generic SaaS template.",
-                'technologies' => ['Laravel', 'Blade', 'Tailwind CSS', 'Alpine.js'],
+                'description' => "Northstar needed a platform that could support partnerships, hiring, and product storytelling in one cohesive surface.\n\nWe rebuilt the site around a stronger brand narrative, a cleaner information architecture, and a more premium editorial rhythm that matched the maturity of the product direction.",
+                'technologies' => ['Laravel', 'Blade', 'Tailwind CSS', 'Alpine.js', 'MySQL'],
                 'cover_media_id' => $this->media['project_northstar-mobility']->id,
                 'featured' => true,
                 'external_link' => 'https://northstar.example',
@@ -247,12 +247,12 @@ class DemoContentSeeder extends Seeder
                 'gallery_keys' => ['project_northstar-mobility_gallery_1', 'project_northstar-mobility_gallery_2', 'project_northstar-mobility_gallery_3'],
             ],
             [
-                'title' => 'Aureline Cloud',
+                'title' => 'Aureline Cloud Experience',
                 'slug' => 'aureline-cloud',
                 'client' => 'Aureline Cloud',
                 'category' => 'Infrastructure Brand',
-                'description' => "Aureline was growing quickly, but the website still looked like a placeholder between fundraising rounds.\n\nWe introduced a premium visual system, clarified the service architecture, and rebuilt the content workflow so the internal team could manage updates without flattening the design language.",
-                'technologies' => ['Laravel', 'MySQL', 'Tailwind CSS'],
+                'description' => "Aureline needed a more credible presence for enterprise conversations.\n\nThe solution combined a refined visual language, stronger proof points, and a clean editorial structure that made the technical offering easier to understand without reducing its sophistication.",
+                'technologies' => ['Laravel', 'MySQL', 'Tailwind CSS', 'Blade'],
                 'cover_media_id' => $this->media['project_aureline-cloud']->id,
                 'featured' => true,
                 'external_link' => 'https://aureline.example',
@@ -260,12 +260,12 @@ class DemoContentSeeder extends Seeder
                 'gallery_keys' => ['project_aureline-cloud_gallery_1', 'project_aureline-cloud_gallery_2', 'project_aureline-cloud_gallery_3'],
             ],
             [
-                'title' => 'Fathom Health Systems',
+                'title' => 'Fathom Health Systems Portal',
                 'slug' => 'fathom-health-systems',
                 'client' => 'Fathom Health Systems',
                 'category' => 'Healthcare Systems',
-                'description' => "Fathom needed to present technical capability, operational reliability, and human clarity within one cohesive digital experience.\n\nThe final platform uses editorial composition, trust-focused information layering, and a lighter admin architecture that keeps critical content organized across the company team.",
-                'technologies' => ['Laravel', 'Blade', 'Content Strategy'],
+                'description' => "Fathom needed a digital presence that could speak to operational teams, clinical stakeholders, and partners without feeling fragmented.\n\nWe structured the site around clarity, trust, and a clean systems narrative so the platform could support both external communication and internal coordination.",
+                'technologies' => ['Laravel', 'Blade', 'Tailwind CSS', 'Content Strategy'],
                 'cover_media_id' => $this->media['project_fathom-health']->id,
                 'featured' => false,
                 'external_link' => 'https://fathom.example',
@@ -291,27 +291,27 @@ class DemoContentSeeder extends Seeder
         foreach ([
             [
                 'name' => 'Layla Haddad',
-                'role' => 'Creative Director',
+                'role' => 'Design Director',
                 'image_media_id' => $this->media['team_layla-haddad']->id,
-                'bio' => 'Leads visual systems, editorial composition, and the overall brand atmosphere so every page feels authored instead of assembled.',
+                'bio' => 'Leads visual systems, editorial composition, and brand atmosphere so each launch feels directed, premium, and easy to trust.',
                 'social_links' => ['linkedin' => 'https://linkedin.com/in/laylahaddad'],
                 'sort_order' => 10,
                 'is_active' => true,
             ],
             [
                 'name' => 'Omar Khaled',
-                'role' => 'Technical Lead',
+                'role' => 'Engineering Lead',
                 'image_media_id' => $this->media['team_omar-khaled']->id,
-                'bio' => 'Shapes the Laravel architecture, content model discipline, and implementation patterns that keep the platform powerful without turning it heavy.',
+                'bio' => 'Shapes Laravel architecture, content model discipline, and implementation patterns that keep the platform fast, stable, and maintainable.',
                 'social_links' => ['linkedin' => 'https://linkedin.com/in/omarkhaled'],
                 'sort_order' => 20,
                 'is_active' => true,
             ],
             [
                 'name' => 'Nora Farouk',
-                'role' => 'Content Systems Strategist',
+                'role' => 'Product Strategy Lead',
                 'image_media_id' => $this->media['team_nora-farouk']->id,
-                'bio' => 'Translates brand narrative into maintainable section logic, content governance, and internal workflows that teams can sustain after launch.',
+                'bio' => 'Translates company narrative into maintainable section logic, content governance, and workflows teams can sustain long after launch.',
                 'social_links' => ['linkedin' => 'https://linkedin.com/in/norafarouk'],
                 'sort_order' => 30,
                 'is_active' => true,
@@ -328,8 +328,8 @@ class DemoContentSeeder extends Seeder
         foreach ([
             ['name' => 'Northstar Mobility', 'website' => 'https://northstar.example'],
             ['name' => 'Aureline Cloud', 'website' => 'https://aureline.example'],
-            ['name' => 'Fathom Health', 'website' => 'https://fathom.example'],
-            ['name' => 'Sable Energy', 'website' => 'https://sable.example'],
+            ['name' => 'Fathom Health Systems', 'website' => 'https://fathom.example'],
+            ['name' => 'Sable Energy Group', 'website' => 'https://sable.example'],
             ['name' => 'Meridian Labs', 'website' => 'https://meridian.example'],
             ['name' => 'Vector Systems', 'website' => 'https://vector.example'],
         ] as $index => $partner) {
@@ -355,8 +355,8 @@ class DemoContentSeeder extends Seeder
                 'email' => 'amal@northstar.example',
                 'phone' => '+966 50 221 9087',
                 'company' => 'Northstar Mobility',
-                'subject' => 'Platform rebuild for launch phase',
-                'message' => 'We are preparing for a regional rollout and need the website to reflect product maturity, partner trust, and a stronger visual system before the next quarter.',
+                'subject' => 'Digital platform rebuild for launch phase',
+                'message' => 'We are preparing for a regional rollout and need the website to reflect product maturity, partner trust, and a stronger brand system before the next quarter.',
                 'status' => 'new',
             ],
             [
@@ -364,7 +364,7 @@ class DemoContentSeeder extends Seeder
                 'email' => 'daniel@meridian.example',
                 'phone' => '+971 55 101 2288',
                 'company' => 'Meridian Labs',
-                'subject' => 'Discovery workshop',
+                'subject' => 'Discovery workshop for internal systems',
                 'message' => 'We need help clarifying our website narrative and simplifying a content setup that has become too complicated for the team to manage.',
                 'status' => 'in_progress',
                 'notes' => 'Follow-up workshop proposal shared on Tuesday.',
@@ -374,7 +374,7 @@ class DemoContentSeeder extends Seeder
                 'email' => 'sara@aureline.example',
                 'phone' => '+966 54 889 1440',
                 'company' => 'Aureline Cloud',
-                'subject' => 'Brand-led redesign',
+                'subject' => 'Brand-led redesign with a lighter CMS workflow',
                 'message' => 'Our current site feels too generic for the kind of enterprise conversations we are having now. We want a stronger flagship presence without adding an overly complex admin system.',
                 'status' => 'resolved',
                 'notes' => 'Project converted into active proposal.',
@@ -408,7 +408,7 @@ class DemoContentSeeder extends Seeder
 
     protected function extractSvgDimension(string $svg, string $dimension): ?int
     {
-        preg_match('/'.$dimension.'=\"(\d+)\"/', $svg, $matches);
+        preg_match('/'.$dimension.'="(\d+)"/', $svg, $matches);
 
         return isset($matches[1]) ? (int) $matches[1] : null;
     }
