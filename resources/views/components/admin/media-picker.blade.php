@@ -104,12 +104,12 @@
             <article class="overflow-hidden rounded-[1.5rem] border border-slate-200 bg-white shadow-sm">
                 <div class="relative bg-slate-100" :class="multiple ? '{{ $multipleAspect }}' : '{{ $singleAspect }}'">
                     <template x-if="item.mime_type.startsWith('image/') && ! item.broken">
-                        <img
-                            :src="item.url"
-                            :alt="item.name"
-                            @error="markBroken(item)"
-                            class="absolute inset-0 h-full w-full object-cover"
-                        >
+                            <img
+                                :src="item.url"
+                                :alt="item.name"
+                                x-on:error="markBroken(item)"
+                                class="absolute inset-0 h-full w-full object-cover"
+                            >
                     </template>
                     <template x-if="! item.mime_type.startsWith('image/') || item.broken">
                         <div class="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-slate-100 px-4 text-center">
@@ -200,7 +200,7 @@
                                         <img
                                             :src="item.url"
                                             :alt="item.name"
-                                            @error="markBroken(item)"
+                                            x-on:error="markBroken(item)"
                                             class="absolute inset-0 h-full w-full object-cover"
                                         >
                                     </template>

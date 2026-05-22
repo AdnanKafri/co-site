@@ -1,5 +1,11 @@
 <x-layouts.app>
-    <section class="site-container section-space">
+    <x-site.breadcrumbs :items="[
+        ['label' => 'Home', 'url' => route('home')],
+        ['label' => 'Projects', 'url' => route('projects.index')],
+        ['label' => $project->title],
+    ]" />
+
+    <section class="site-container section-space" data-reveal>
         <div class="grid gap-8 xl:grid-cols-[0.95fr_1.05fr] xl:items-end">
             <div class="max-w-3xl">
                 <p class="eyebrow">{{ $project->category ?: 'Project' }}</p>
@@ -9,7 +15,7 @@
             <div class="glass-panel p-6 sm:p-8">
                 @if (! empty($project->technologies))
                     <p class="text-[11px] uppercase tracking-[0.22em] text-slate-400">Technologies</p>
-                    <div class="mt-5 flex flex-wrap gap-3">
+                    <div class="mt-5 flex flex-wrap gap-3" data-reveal data-reveal-stagger="true">
                 @foreach ($project->technologies as $technology)
                             <span class="rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm text-slate-200">{{ $technology }}</span>
                 @endforeach
@@ -23,15 +29,17 @@
         </div>
     </section>
 
-    <section class="site-container section-space">
+    <section class="site-container section-space" data-reveal>
         <div class="grid gap-8 xl:grid-cols-[1.05fr_0.95fr] xl:items-start">
             <div class="glass-panel-strong overflow-hidden p-3">
-                <div class="relative aspect-[5/4] overflow-hidden rounded-[1.8rem] bg-slate-900">
-                    @if ($project->cover)
-                        <img src="{{ $project->cover->url }}" alt="{{ $project->title }}" class="absolute inset-0 h-full w-full object-cover">
-                    @endif
-                    <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(9,16,30,0.08),rgba(9,16,30,0.72))]"></div>
-                </div>
+                <x-site.media-frame
+                    :src="$project->cover?->url"
+                    :alt="$project->title"
+                    ratio="aspect-[5/4]"
+                    rounded="rounded-[1.8rem]"
+                    overlayClass="bg-[linear-gradient(180deg,rgba(9,16,30,0.08),rgba(9,16,30,0.72))]"
+                    imageClass="image-zoom"
+                />
             </div>
             <div class="glass-panel p-7">
                 <p class="text-[11px] uppercase tracking-[0.22em] text-slate-400">Case study narrative</p>
@@ -50,10 +58,15 @@
             </div>
             <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 @foreach ($project->gallery as $image)
-                    <div class="site-card">
-                        <div class="relative aspect-[4/3] overflow-hidden">
-                            <img src="{{ $image->url }}" alt="{{ $image->alt_text ?: $project->title }}" class="absolute inset-0 h-full w-full object-cover">
-                        </div>
+                    <div class="site-card hover-glow">
+                        <x-site.media-frame
+                            :src="$image->url"
+                            :alt="$image->alt_text ?: $project->title"
+                            ratio="aspect-[4/3]"
+                            rounded="rounded-none"
+                            overlayClass="bg-[linear-gradient(180deg,rgba(9,16,30,0.06),rgba(9,16,30,0.45))]"
+                            imageClass="image-zoom"
+                        />
                     </div>
                 @endforeach
             </div>
@@ -68,12 +81,15 @@
             </div>
             <div class="grid gap-6 md:grid-cols-2">
                 @foreach ($relatedProjects as $related)
-                    <a href="{{ route('projects.show', $related) }}" class="site-card">
-                        @if ($related->cover)
-                            <div class="relative aspect-[5/4] overflow-hidden">
-                                <img src="{{ $related->cover->url }}" alt="{{ $related->title }}" class="absolute inset-0 h-full w-full object-cover">
-                            </div>
-                        @endif
+                    <a href="{{ route('projects.show', $related) }}" class="site-card group">
+                        <x-site.media-frame
+                            :src="$related->cover?->url"
+                            :alt="$related->title"
+                            ratio="aspect-[5/4]"
+                            rounded="rounded-none"
+                            overlayClass="bg-[linear-gradient(180deg,rgba(10,18,34,0.08),rgba(10,18,34,0.78))]"
+                            imageClass="image-zoom"
+                        />
                         <div class="p-6">
                             <p class="text-sm uppercase tracking-[0.22em] text-sky-100">{{ $related->category ?: 'Project' }}</p>
                             <h2 class="mt-3 text-2xl font-semibold text-white">{{ $related->title }}</h2>

@@ -24,10 +24,29 @@
 
     html {
         scroll-behavior: smooth;
+        scroll-padding-top: 7rem;
     }
 
     body {
         @apply bg-white text-slate-900 antialiased;
+    }
+
+    body::selection {
+        background: rgba(47, 102, 208, 0.25);
+        color: #f8fafc;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        html {
+            scroll-behavior: auto;
+        }
+
+        *, *::before, *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+        }
     }
 }
 
@@ -98,5 +117,113 @@
 
     .halo-orb {
         @apply absolute rounded-full blur-3xl;
+    }
+
+    .js-ready .reveal-item {
+        opacity: 0;
+        transform: translateY(22px) scale(0.985);
+        filter: blur(12px);
+        transition:
+            opacity 760ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms),
+            transform 760ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms),
+            filter 760ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms);
+        will-change: opacity, transform, filter;
+    }
+
+    .js-ready .reveal-item.is-visible {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+
+    .hover-lift {
+        @apply transition duration-500 ease-out;
+        transform: translateY(0);
+    }
+
+    .hover-lift:hover {
+        transform: translateY(-5px);
+    }
+
+    .hover-glow {
+        transition:
+            transform 500ms cubic-bezier(0.22, 1, 0.36, 1),
+            box-shadow 500ms cubic-bezier(0.22, 1, 0.36, 1),
+            border-color 500ms cubic-bezier(0.22, 1, 0.36, 1),
+            background-color 500ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .hover-glow:hover {
+        box-shadow:
+            0 18px 60px rgba(0, 0, 0, 0.22),
+            0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+    }
+
+    .button-premium {
+        @apply inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition duration-500;
+        transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .button-premium:hover {
+        transform: translateY(-1px);
+    }
+
+    .button-premium:active {
+        transform: translateY(0);
+    }
+
+    .nav-premium {
+        @apply inline-flex items-center rounded-full border border-white/12 bg-white/6 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-slate-200 transition duration-500;
+        transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .nav-premium:hover {
+        @apply border-white/24 bg-white/10 text-white;
+        transform: translateY(-1px);
+    }
+
+    .image-zoom {
+        @apply transition duration-700 ease-out;
+        transform: scale(1);
+    }
+
+    .skeleton-shimmer {
+        background:
+            linear-gradient(90deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.08) 50%, rgba(255, 255, 255, 0.02) 100%),
+            linear-gradient(180deg, rgba(12, 19, 35, 0.92), rgba(6, 10, 20, 0.96));
+        background-size: 200% 100%, 100% 100%;
+        animation: shimmer-slide 1.9s ease-in-out infinite;
+    }
+
+    .image-fade {
+        animation: image-fade-in 850ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .group:hover .image-zoom,
+    .site-card:hover .image-zoom,
+    .glass-panel:hover .image-zoom {
+        transform: scale(1.04);
+    }
+}
+
+@keyframes shimmer-slide {
+    0% {
+        background-position: 200% 0, 0 0;
+    }
+    100% {
+        background-position: -200% 0, 0 0;
+    }
+}
+
+@keyframes image-fade-in {
+    0% {
+        opacity: 0;
+        transform: scale(1.03);
+        filter: blur(8px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
     }
 }

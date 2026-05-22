@@ -3,6 +3,11 @@
     @php($details = $sections->get('details')?->data ?? [])
     @php($cta = $sections->get('cta')?->data ?? [])
 
+    <x-site.breadcrumbs :items="[
+        ['label' => 'Home', 'url' => route('home')],
+        ['label' => 'Contact'],
+    ]" />
+
     <section class="site-container section-space">
         <div class="grid gap-10 xl:grid-cols-[0.92fr_1.08fr] xl:items-start">
             <div>
@@ -34,30 +39,30 @@
                 <div class="grid gap-5 sm:grid-cols-2">
                     <label class="text-sm text-slate-300">
                         Name
-                        <input type="text" name="name" value="{{ old('name') }}" class="mt-2 w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-white outline-none">
+                        <input type="text" name="name" value="{{ old('name') }}" class="mt-2 w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-white outline-none transition duration-300 focus:border-sky-300/40 focus:ring-2 focus:ring-sky-300/20">
                     </label>
                     <label class="text-sm text-slate-300">
                         Email
-                        <input type="email" name="email" value="{{ old('email') }}" class="mt-2 w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-white outline-none">
+                        <input type="email" name="email" value="{{ old('email') }}" class="mt-2 w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-white outline-none transition duration-300 focus:border-sky-300/40 focus:ring-2 focus:ring-sky-300/20">
                     </label>
                 </div>
                 <div class="grid gap-5 sm:grid-cols-2">
                     <label class="text-sm text-slate-300">
                         Phone
-                        <input type="text" name="phone" value="{{ old('phone') }}" class="mt-2 w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-white outline-none">
+                        <input type="text" name="phone" value="{{ old('phone') }}" class="mt-2 w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-white outline-none transition duration-300 focus:border-sky-300/40 focus:ring-2 focus:ring-sky-300/20">
                     </label>
                     <label class="text-sm text-slate-300">
                         Company
-                        <input type="text" name="company" value="{{ old('company') }}" class="mt-2 w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-white outline-none">
+                        <input type="text" name="company" value="{{ old('company') }}" class="mt-2 w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-white outline-none transition duration-300 focus:border-sky-300/40 focus:ring-2 focus:ring-sky-300/20">
                     </label>
                 </div>
                 <label class="block text-sm text-slate-300">
                     Subject
-                    <input type="text" name="subject" value="{{ old('subject') }}" class="mt-2 w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-white outline-none">
+                    <input type="text" name="subject" value="{{ old('subject') }}" class="mt-2 w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-white outline-none transition duration-300 focus:border-sky-300/40 focus:ring-2 focus:ring-sky-300/20">
                 </label>
                 <label class="block text-sm text-slate-300">
                     Message
-                    <textarea name="message" rows="6" class="mt-2 w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-white outline-none">{{ old('message') }}</textarea>
+                    <textarea name="message" rows="6" class="mt-2 w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-white outline-none transition duration-300 focus:border-sky-300/40 focus:ring-2 focus:ring-sky-300/20">{{ old('message') }}</textarea>
                 </label>
                 <button type="submit" class="rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-slate-200">
                     Send Inquiry
@@ -80,11 +85,14 @@
                 <div class="mt-10 grid gap-6 md:grid-cols-3">
                     @foreach ($teamMembers as $member)
                         <article class="site-card">
-                            @if ($member->image)
-                                <div class="relative aspect-[4/5] overflow-hidden">
-                                    <img src="{{ $member->image->url }}" alt="{{ $member->name }}" class="absolute inset-0 h-full w-full object-cover">
-                                </div>
-                            @endif
+                            <x-site.media-frame
+                                :src="$member->image?->url"
+                                :alt="$member->name"
+                                ratio="aspect-[4/5]"
+                                rounded="rounded-none"
+                                overlayClass="bg-[linear-gradient(180deg,rgba(8,14,24,0.06),rgba(8,14,24,0.72))]"
+                                imageClass="image-zoom"
+                            />
                             <div class="p-6">
                                 <p class="text-sm uppercase tracking-[0.22em] text-sky-100">{{ $member->role }}</p>
                                 <h3 class="mt-3 text-2xl font-semibold text-white">{{ $member->name }}</h3>

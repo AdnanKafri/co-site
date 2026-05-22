@@ -1,5 +1,11 @@
 <x-layouts.app>
-    <section class="site-container section-space">
+    <x-site.breadcrumbs :items="[
+        ['label' => 'Home', 'url' => route('home')],
+        ['label' => 'Services', 'url' => route('services.index')],
+        ['label' => $service->title],
+    ]" />
+
+    <section class="site-container section-space" data-reveal>
         <div class="grid gap-8 xl:grid-cols-[0.9fr_1.1fr] xl:items-end">
             <div class="max-w-3xl">
                 <p class="eyebrow">{{ $service->icon ?: 'Service' }}</p>
@@ -7,7 +13,7 @@
                 <p class="body-lg mt-8">{{ $service->excerpt }}</p>
             </div>
             <div class="glass-panel p-6 sm:p-8">
-                <div class="grid gap-4 sm:grid-cols-3">
+                <div class="grid gap-4 sm:grid-cols-3" data-reveal data-reveal-stagger="true">
                     <div class="rounded-[1.5rem] border border-white/10 bg-white/[0.04] p-4">
                         <p class="text-[11px] uppercase tracking-[0.2em] text-slate-400">01</p>
                         <p class="mt-2 text-lg font-semibold text-white">Diagnose</p>
@@ -25,16 +31,18 @@
         </div>
     </section>
 
-    <section class="site-container section-space">
+    <section class="site-container section-space" data-reveal>
         <div class="grid gap-8 xl:grid-cols-[1.05fr_0.95fr] xl:items-start">
             <div>
                 <div class="glass-panel-strong overflow-hidden p-3">
-                    <div class="relative aspect-[4/3] overflow-hidden rounded-[1.7rem] bg-slate-900">
-                        @if ($service->image)
-                            <img src="{{ $service->image->url }}" alt="{{ $service->title }}" class="absolute inset-0 h-full w-full object-cover">
-                        @endif
-                        <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,14,24,0.08),rgba(8,14,24,0.74))]"></div>
-                    </div>
+                    <x-site.media-frame
+                        :src="$service->image?->url"
+                        :alt="$service->title"
+                        ratio="aspect-[4/3]"
+                        rounded="rounded-[1.7rem]"
+                        overlayClass="bg-[linear-gradient(180deg,rgba(8,14,24,0.08),rgba(8,14,24,0.74))]"
+                        imageClass="image-zoom"
+                    />
                 </div>
             </div>
             <div class="grid gap-6">
@@ -62,12 +70,15 @@
             </div>
             <div class="grid gap-6 md:grid-cols-3">
                 @foreach ($relatedServices as $related)
-                    <a href="{{ route('services.show', $related) }}" class="site-card">
-                        @if ($related->image)
-                            <div class="relative aspect-[4/3] overflow-hidden">
-                                <img src="{{ $related->image->url }}" alt="{{ $related->title }}" class="absolute inset-0 h-full w-full object-cover">
-                            </div>
-                        @endif
+                    <a href="{{ route('services.show', $related) }}" class="site-card group">
+                        <x-site.media-frame
+                            :src="$related->image?->url"
+                            :alt="$related->title"
+                            ratio="aspect-[4/3]"
+                            rounded="rounded-none"
+                            overlayClass="bg-[linear-gradient(180deg,rgba(8,14,24,0.08),rgba(8,14,24,0.72))]"
+                            imageClass="image-zoom"
+                        />
                         <div class="p-6">
                             <p class="text-sm uppercase tracking-[0.22em] text-sky-100">{{ $related->icon ?: 'Service' }}</p>
                             <h2 class="mt-3 text-2xl font-semibold text-white">{{ $related->title }}</h2>

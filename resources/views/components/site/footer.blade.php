@@ -4,9 +4,9 @@
             <div class="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
                 <div class="max-w-xl">
                     <div class="flex items-center gap-3">
-            @if ($siteLogo)
+                        @if ($siteLogo)
                             <img src="{{ $siteLogo->url }}" alt="{{ $brandSettings['company_name'] ?? 'PressnGo' }}" class="h-9 w-auto opacity-95">
-            @endif
+                        @endif
                         <p class="font-[family-name:var(--font-display)] text-lg font-semibold text-white">{{ $brandSettings['company_name'] ?? 'PressnGo' }}</p>
                     </div>
                     <p class="mt-4 body-md max-w-lg">
@@ -14,10 +14,11 @@
                     </p>
                 </div>
                 <div class="flex flex-col gap-4 sm:flex-row sm:items-center">
-                    <a href="{{ route('about') }}" class="action-pill justify-center">About</a>
-                    <a href="{{ route('services.index') }}" class="action-pill justify-center">Services</a>
-                    <a href="{{ route('projects.index') }}" class="action-pill justify-center">Projects</a>
-                    <a href="{{ route('contact') }}" class="action-pill justify-center">Contact</a>
+                    <a href="{{ route('home') }}" class="nav-premium justify-center">Home</a>
+                    <a href="{{ route('about') }}" class="nav-premium justify-center">About</a>
+                    <a href="{{ route('services.index') }}" class="nav-premium justify-center">Services</a>
+                    <a href="{{ route('projects.index') }}" class="nav-premium justify-center">Projects</a>
+                    <a href="{{ route('contact') }}" class="nav-premium justify-center">Contact</a>
                 </div>
             </div>
             <div class="soft-divider my-8"></div>

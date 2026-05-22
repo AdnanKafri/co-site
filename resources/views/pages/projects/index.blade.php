@@ -1,5 +1,10 @@
 <x-layouts.app>
-    <section class="site-container section-space">
+    <x-site.breadcrumbs :items="[
+        ['label' => 'Home', 'url' => route('home')],
+        ['label' => 'Projects'],
+    ]" />
+
+    <section class="site-container section-space" data-reveal>
         <div class="grid gap-8 xl:grid-cols-[1.05fr_0.95fr] xl:items-end">
             <div class="max-w-4xl">
                 <p class="eyebrow">Projects</p>
@@ -8,9 +13,9 @@
                     Featured work should feel like proof with atmosphere. The layout stays structured, but the visual sequencing is designed to carry weight and momentum.
                 </p>
             </div>
-            <div class="grid gap-4 sm:grid-cols-2">
+            <div class="grid gap-4 sm:grid-cols-2" data-reveal data-reveal-stagger="true">
                 @foreach ($featuredProjects as $featured)
-                    <a href="{{ route('projects.show', $featured) }}" class="glass-panel p-5 transition hover:-translate-y-1 hover:border-white/20">
+                    <a href="{{ route('projects.show', $featured) }}" class="glass-panel hover-glow p-5 transition duration-500 hover:-translate-y-1 hover:border-white/20">
                         <p class="text-[11px] uppercase tracking-[0.22em] text-sky-100">{{ $featured->category ?: 'Featured' }}</p>
                         <h2 class="mt-4 text-2xl font-semibold text-white">{{ $featured->title }}</h2>
                         <p class="mt-3 text-sm text-slate-400">{{ $featured->client }}</p>
@@ -20,16 +25,21 @@
         </div>
     </section>
 
-    <section class="site-container section-space">
+    <section class="site-container section-space" data-reveal>
         <div class="space-y-6">
-            @forelse ($projects as $project)
-                <a href="{{ route('projects.show', $project) }}" class="site-card grid gap-0 lg:grid-cols-[1fr_1fr]">
-                    <div class="relative min-h-[20rem] overflow-hidden bg-slate-900 {{ $loop->even ? 'lg:order-2' : '' }}">
-                        @if ($project->cover)
-                            <img src="{{ $project->cover->url }}" alt="{{ $project->title }}" class="absolute inset-0 h-full w-full object-cover">
-                        @endif
-                        <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,18,34,0.08),rgba(10,18,34,0.78))]"></div>
-                    </div>
+                @forelse ($projects as $project)
+                    <a href="{{ route('projects.show', $project) }}" class="site-card group grid gap-0 lg:grid-cols-[1fr_1fr]">
+                        <div class="relative min-h-[20rem] overflow-hidden bg-slate-900 {{ $loop->even ? 'lg:order-2' : '' }}">
+                            <x-site.media-frame
+                                :src="$project->cover?->url"
+                                :alt="$project->title"
+                                ratio="aspect-[4/3] lg:aspect-auto lg:absolute lg:inset-0 lg:h-full"
+                                rounded="rounded-none"
+                                wrapperClass="h-full"
+                                overlayClass="bg-[linear-gradient(180deg,rgba(10,18,34,0.08),rgba(10,18,34,0.78))]"
+                                imageClass="image-zoom"
+                            />
+                        </div>
                     <div class="flex flex-col justify-between p-7 sm:p-8">
                         <div>
                             <p class="text-sm uppercase tracking-[0.24em] text-sky-100">{{ $project->category ?: 'Project' }}</p>
@@ -39,7 +49,7 @@
                         </div>
                         <div class="mt-8 flex items-center justify-between gap-4">
                             <span class="text-sm text-slate-400">Case study framing</span>
-                            <span class="text-sm font-semibold text-white">Explore</span>
+                            <span class="text-sm font-semibold text-white transition duration-500 group-hover:translate-x-1">Explore</span>
                         </div>
                     </div>
                 </a>
